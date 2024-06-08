@@ -1,34 +1,30 @@
-package com.example.clone_simple_board.post.model;
+package com.example.clone_simple_board.reply.model;
 
-import com.example.clone_simple_board.board.db.BoardEntity;
-import com.example.clone_simple_board.reply.db.ReplyEntity;
+import com.example.clone_simple_board.post.db.PostEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @ToString
-@NoArgsConstructor
-@AllArgsConstructor
 @JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class PostDto {
-
+public class ReplyDto {
     private Long id;
 
-    private Long boardId;
+    private Long postId;
 
     private String userName;
 
     private String password;
-
-    private String email;
 
     private String status;
 
@@ -36,8 +32,5 @@ public class PostDto {
 
     private String content;
 
-    private LocalDateTime postedAt;
-
-    @Transient
-    private List<ReplyEntity> replyList = List.of();
+    private LocalDateTime repliedAt;
 }

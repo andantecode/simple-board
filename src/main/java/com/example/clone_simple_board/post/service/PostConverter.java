@@ -22,6 +22,7 @@ public class PostConverter {
                 .content(postEntity.getContent())
                 .postedAt(postEntity.getPostedAt())
                 .boardId(postEntity.getBoard().getId())
+                .replyList(postEntity.getReplyList())
                 .build();
 
     }
