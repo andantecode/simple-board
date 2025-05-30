@@ -18,9 +18,9 @@ public class PostEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long board_id;
+    private Long boardId;
 
-    private String user_name;
+    private String userName;
 
     private String password;
 
@@ -33,5 +33,5 @@ public class PostEntity {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    private LocalDateTime posted_at;
+    private LocalDateTime postedAt;
 }

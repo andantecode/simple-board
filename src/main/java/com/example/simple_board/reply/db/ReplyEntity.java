@@ -18,9 +18,9 @@ public class ReplyEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long post_id;
+    private Long postId;
 
-    private String user_name;
+    private String userName;
 
     private String password;
 
@@ -31,5 +31,5 @@ public class ReplyEntity {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    private LocalDateTime replied_at;
+    private LocalDateTime repliedAt;
 }
