@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 게시판 Controller
+ * 게시판 생성
+ *
+ * @author andantecode
+ */
 @RestController
 @RequestMapping("/api/board")
 @RequiredArgsConstructor
@@ -17,6 +23,11 @@ public class BoardApiController {
 
     private final BoardService boardService;
 
+    /**
+     * 게시판 생성
+     * @param boardRequest
+     * @return
+     */
     @PostMapping("")
     public BoardEntity create(
         @Valid
