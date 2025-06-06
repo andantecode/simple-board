@@ -5,10 +5,8 @@ import com.example.simple_board.board.model.BoardRequest;
 import com.example.simple_board.board.service.BoardService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 게시판 Controller
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author andantecode
  */
+@Slf4j
 @RestController
 @RequestMapping("/api/board")
 @RequiredArgsConstructor
@@ -35,5 +34,14 @@ public class BoardApiController {
         BoardRequest boardRequest
     ) {
         return boardService.create(boardRequest);
+    }
+
+    @GetMapping("/id/{id}")
+    public BoardEntity view(
+            @PathVariable Long id
+    ) {
+        var entity = boardService.view(id);
+        log.info("result: {}", entity);
+        return entity;
     }
 }

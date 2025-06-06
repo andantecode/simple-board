@@ -1,6 +1,8 @@
 package com.example.simple_board.post.db;
 
+import com.example.simple_board.board.db.BoardEntity;
 import com.example.simple_board.reply.db.ReplyEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,7 +23,9 @@ public class PostEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long boardId;
+    @ManyToOne
+    @JsonIgnore // 무한루프 방지 (BoardEntity가 PostEntity를 참조, PostEntity가 BoardEntity를 참조)
+    private BoardEntity board;
 
     private String userName;
 
@@ -38,6 +42,8 @@ public class PostEntity {
 
     private LocalDateTime postedAt;
 
-    @Transient // DB 컬럼으로 인식하지 않겠다.
+    // @Transient // DB 컬럼으로 인식하지 않겠다.
+    @OneToMany(mappedBy = "post")
+    @Builder.Default
     private List<ReplyEntity> replyList = List.of();
 }

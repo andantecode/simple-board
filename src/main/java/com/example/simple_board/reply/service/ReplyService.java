@@ -1,5 +1,6 @@
 package com.example.simple_board.reply.service;
 
+import com.example.simple_board.post.db.PostRepository;
 import com.example.simple_board.reply.db.ReplyEntity;
 import com.example.simple_board.reply.db.ReplyRepository;
 import com.example.simple_board.reply.model.ReplyRequest;
@@ -14,12 +15,16 @@ import java.util.List;
 public class ReplyService {
 
     private final ReplyRepository replyRepository;
+    private final PostRepository postRepository;
 
     public ReplyEntity create(
             ReplyRequest replyRequest
     ) {
+        // TODO 에러 처리
+        var postEntity = postRepository.findById(replyRequest.getPostId()).get();
+
         var entity = ReplyEntity.builder()
-                .postId(replyRequest.getPostId())
+                .post(postEntity)
                 .userName(replyRequest.getUserName())
                 .password(replyRequest.getPassword())
                 .status("REGISTERED")
